@@ -1,5 +1,10 @@
 package clasificacion;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.LinkedList;
+
 public class TClasificador {
 
     public static final int METODO_CLASIFICACION_INSERCION = 1;
@@ -8,8 +13,10 @@ public class TClasificador {
     public static final int METODO_CLASIFICACION_QUICKSORT = 4;
     public static final int METODO_CLASIFICACION_SELECCION = 5;
     public static final int METODO_CLASIFICACION_HEAPSORT = 6;
-    public static final int METODO_CLASIFICACION_BINSORT = 7;
-    public static final int METODO_CLASIFICACION_RADIXSORT = 8;
+    public static final int METODO_CLASIFICACION_ARRAYLIST = 7;
+    public static final int METODO_CLASIFICACION_LINKEDLIST = 8;
+    public static final int METODO_CLASIFICACION_SORTARRAY = 9;
+    public static final int METODO_CLASIFICACION_PARALLELSORT = 10;
 
     public static void imprimirVector(int[] vector) {
         for (int i = 0; i < vector.length; i++) {
@@ -75,6 +82,38 @@ public class TClasificador {
                     return ordenarCascara(datosParaClasificar);
                 } else {
                     return ordenarPorHeapSort(datosParaClasificar);
+                }
+            case METODO_CLASIFICACION_ARRAYLIST:
+                if (cascara) {
+                    tiempoArrayListCascara(datosParaClasificar);
+                    return null;
+                }else{
+                    tiempoArrayList(datosParaClasificar);
+                    return null;
+                }
+            case METODO_CLASIFICACION_LINKEDLIST:
+                if(cascara){
+                    tiempoLinkedListCascara(datosParaClasificar);
+                    return null;
+                }else{
+                    tiempoLinkedList(datosParaClasificar);
+                    return null;
+                }
+            case METODO_CLASIFICACION_SORTARRAY:
+                if(cascara){
+                    Arrays.sort(new int[0]);
+                    return null;
+                }else{
+                    Arrays.sort(datosParaClasificar);
+                    return null;
+                }
+            case METODO_CLASIFICACION_PARALLELSORT:
+                if(cascara){
+                    Arrays.parallelSort(new int[0]);
+                    return null;
+                }else{
+                    Arrays.parallelSort(datosParaClasificar);
+                    return null;
                 }
             default:
                 System.err.println("Método inválido");
@@ -253,6 +292,87 @@ public class TClasificador {
                 }
             }
         }
+    }
+     public ArrayList tiempoArrayList(int[] datos) {
+        ArrayList vec = new ArrayList();
+
+        for (int i : datos) {
+            vec.add(i);
+        }
+        Collections.sort(vec);
+
+        return vec;
+    }
+
+    public ArrayList tiempoArrayListCascara(int[] datos) {
+        ArrayList vec = new ArrayList();
+
+        for (int i : datos) {
+            vec.add(i);
+        }
+        vec = new ArrayList();
+        Collections.sort(vec);
+        
+        return vec;
+    }
+
+    public LinkedList tiempoLinkedList(int[] datos) {
+
+        LinkedList l = new LinkedList();
+        for (int i : datos) {
+            l.add(i);
+        }
+
+        Collections.sort(l);
+
+        return l;
+    }
+
+    public LinkedList tiempoLinkedListCascara(int [] datos){
+       LinkedList l = new LinkedList();
+        for (int i : datos) {
+            l.add(i);
+        }
+        l = new LinkedList();
+        Collections.sort(l);
+
+        return l;
+    }
+    
+    
+    public long tiempoSortArray(int[] datos, int repeticiones) {
+        long res = 0;
+        for (int j = 0; j < repeticiones; j++) {
+            int[] copia = datos.clone();
+
+            long start = System.nanoTime();
+            Arrays.sort(copia);
+            long finish = System.nanoTime();
+
+            int[] vacio = new int[0];
+            long startCascara = System.nanoTime();
+            Arrays.sort(vacio);
+            long finishCascara = System.nanoTime();
+            res += (finish - start - (finishCascara - startCascara));
+        }
+        return res;
+    }
+
+    public long tiempoParallelSort(int[] datos, int repeticiones) {
+        long res = 0;
+        for (int j = 0; j < repeticiones; j++) {
+            int[] copia = datos.clone();
+
+            long start = System.nanoTime();
+            Arrays.parallelSort(copia);
+            long finish = System.nanoTime();
+            int[] vacio = new int[0];
+            long startCascara = System.nanoTime();
+            Arrays.sort(vacio);
+            long finishCascara = System.nanoTime();
+            res += (finish - start - (finishCascara - startCascara));
+        }
+        return res;
     }
 
     public Boolean estaOrdenadoAcendentemente(int[] vector) {
