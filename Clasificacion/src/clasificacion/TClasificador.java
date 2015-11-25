@@ -87,31 +87,31 @@ public class TClasificador {
                 if (cascara) {
                     tiempoArrayListCascara(datosParaClasificar);
                     break;
-                }else{
+                } else {
                     tiempoArrayList(datosParaClasificar);
                     break;
                 }
             case METODO_CLASIFICACION_LINKEDLIST:
-                if(cascara){
+                if (cascara) {
                     tiempoLinkedListCascara(datosParaClasificar);
                     break;
-                }else{
+                } else {
                     tiempoLinkedList(datosParaClasificar);
                     break;
                 }
             case METODO_CLASIFICACION_SORTARRAY:
-                if(cascara){
+                if (cascara) {
                     Arrays.sort(new int[0]);
                     break;
-                }else{
+                } else {
                     Arrays.sort(datosParaClasificar);
                     break;
                 }
             case METODO_CLASIFICACION_PARALLELSORT:
-                if(cascara){
+                if (cascara) {
                     Arrays.parallelSort(new int[0]);
                     break;
-                }else{
+                } else {
                     Arrays.parallelSort(datosParaClasificar);
                     break;
                 }
@@ -293,7 +293,8 @@ public class TClasificador {
             }
         }
     }
-     public ArrayList tiempoArrayList(int[] datos) {
+
+    public ArrayList tiempoArrayList(int[] datos) {
         ArrayList vec = new ArrayList();
 
         for (int i : datos) {
@@ -312,7 +313,7 @@ public class TClasificador {
         }
         vec = new ArrayList();
         Collections.sort(vec);
-        
+
         return vec;
     }
 
@@ -328,8 +329,8 @@ public class TClasificador {
         return l;
     }
 
-    public LinkedList tiempoLinkedListCascara(int [] datos){
-       LinkedList l = new LinkedList();
+    public LinkedList tiempoLinkedListCascara(int[] datos) {
+        LinkedList l = new LinkedList();
         for (int i : datos) {
             l.add(i);
         }
@@ -388,7 +389,7 @@ public class TClasificador {
         }
         long promedioCascara = total / cantidadDeLlamadas;
 
-        return ((promedioClasificando - promedioCascara)/1e6);
+        return ((promedioClasificando - promedioCascara) / 1e6);
     }
 
 }

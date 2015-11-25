@@ -5,6 +5,8 @@
  */
 package clasificacion;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -109,6 +111,38 @@ public class TClasificadorTest {
         int[] result = instance.ordenarPorHeapSort(datosParaClasificar);
         System.out.println("");
         assertArrayEquals(expResult, result);
+    }
+
+    @Test
+    public void testOrdenarArrayList() {
+        System.out.println("Ordenar ArrayList");
+        int[] datosParaClasificar = {2, 5, 1, 1, 8, 3, 7, 6};
+
+        int[] datosOrdenados = {1, 1, 2, 3, 5, 6, 7, 8};
+        TClasificador instance = new TClasificador();
+        ArrayList expResult = new ArrayList();
+        for (int i : datosOrdenados) {
+            expResult.add(i);
+        }
+        ArrayList result = instance.tiempoArrayList(datosParaClasificar);
+        System.out.println("");
+        assertEquals(expResult, result);
+    }
+    
+     @Test
+    public void testOrdenarLinkedList() {
+        System.out.println("Ordenar LinkedList");
+        int[] datosParaClasificar = {2, 5, 1, 1, 8, 3, 7, 6};
+
+        int[] datosOrdenados = {1, 1, 2, 3, 5, 6, 7, 8};
+        TClasificador instance = new TClasificador();
+        LinkedList expResult = new LinkedList();
+        for (int i : datosOrdenados) {
+            expResult.add(i);
+        }
+        LinkedList result = instance.tiempoLinkedList(datosParaClasificar);
+        System.out.println("");
+        assertEquals(expResult, result);
     }
 
     /**
