@@ -86,34 +86,34 @@ public class TClasificador {
             case METODO_CLASIFICACION_ARRAYLIST:
                 if (cascara) {
                     tiempoArrayListCascara(datosParaClasificar);
-                    return null;
+                    break;
                 }else{
                     tiempoArrayList(datosParaClasificar);
-                    return null;
+                    break;
                 }
             case METODO_CLASIFICACION_LINKEDLIST:
                 if(cascara){
                     tiempoLinkedListCascara(datosParaClasificar);
-                    return null;
+                    break;
                 }else{
                     tiempoLinkedList(datosParaClasificar);
-                    return null;
+                    break;
                 }
             case METODO_CLASIFICACION_SORTARRAY:
                 if(cascara){
                     Arrays.sort(new int[0]);
-                    return null;
+                    break;
                 }else{
                     Arrays.sort(datosParaClasificar);
-                    return null;
+                    break;
                 }
             case METODO_CLASIFICACION_PARALLELSORT:
                 if(cascara){
                     Arrays.parallelSort(new int[0]);
-                    return null;
+                    break;
                 }else{
                     Arrays.parallelSort(datosParaClasificar);
-                    return null;
+                    break;
                 }
             default:
                 System.err.println("Método inválido");
@@ -337,42 +337,6 @@ public class TClasificador {
         Collections.sort(l);
 
         return l;
-    }
-    
-    
-    public long tiempoSortArray(int[] datos, int repeticiones) {
-        long res = 0;
-        for (int j = 0; j < repeticiones; j++) {
-            int[] copia = datos.clone();
-
-            long start = System.nanoTime();
-            Arrays.sort(copia);
-            long finish = System.nanoTime();
-
-            int[] vacio = new int[0];
-            long startCascara = System.nanoTime();
-            Arrays.sort(vacio);
-            long finishCascara = System.nanoTime();
-            res += (finish - start - (finishCascara - startCascara));
-        }
-        return res;
-    }
-
-    public long tiempoParallelSort(int[] datos, int repeticiones) {
-        long res = 0;
-        for (int j = 0; j < repeticiones; j++) {
-            int[] copia = datos.clone();
-
-            long start = System.nanoTime();
-            Arrays.parallelSort(copia);
-            long finish = System.nanoTime();
-            int[] vacio = new int[0];
-            long startCascara = System.nanoTime();
-            Arrays.sort(vacio);
-            long finishCascara = System.nanoTime();
-            res += (finish - start - (finishCascara - startCascara));
-        }
-        return res;
     }
 
     public Boolean estaOrdenadoAcendentemente(int[] vector) {
