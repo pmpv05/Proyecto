@@ -2,7 +2,7 @@ package clasificacion;
 
 import java.util.Date;
 
-public class Imagen {
+public class Imagen implements Comparable<Imagen> {
 
     private Long id;
     private String nombre;
@@ -95,6 +95,32 @@ public class Imagen {
 
     public void setAnio(Integer anio) {
         this.anio = anio;
+    }
+
+    @Override
+    public int compareTo(Imagen t) {
+        if (anio < t.getAnio()) {
+            return -1;
+        }
+        if (anio > t.getAnio()) {
+            return 1;
+        } else {
+            if (apellido.compareTo(t.getApellido()) < 0) {
+                return -1;
+            }
+            if (apellido.compareTo(t.getApellido()) > 0) {
+                return 1;
+            } else {
+                if (nombre.compareTo(t.getNombre()) < 0) {
+                    return -1;
+                }
+                if (nombre.compareTo(t.getNombre()) > 0) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        }
     }
 
 }

@@ -5,8 +5,15 @@
  */
 package clasificacion;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -80,10 +87,10 @@ public class TClasificadorTest {
     @Test
     public void testOrdenarPorQuickSort() {
         System.out.println("QuickSort");
-        int[] datosParaClasificar = {2, 5, 1, 1, 8, 3, 7, 6};
+        int[] datosParaClasificar = {2,4,3,9,10,7,6,5};
 
         TClasificador instance = new TClasificador();
-        int[] expResult = {1, 1, 2, 3, 5, 6, 7, 8};
+        int[] expResult = {2,3,4,5,6,7,9,10};
         int[] result = instance.ordenarPorQuickSort(datosParaClasificar);
         System.out.println("");
         assertArrayEquals(expResult, result);
@@ -170,5 +177,4 @@ public class TClasificadorTest {
         Boolean result = instance.estaOrdenadoDescendentemente(vector);
         assertEquals(expResult, result);
     }
-
 }
